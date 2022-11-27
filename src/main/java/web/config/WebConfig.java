@@ -25,7 +25,6 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableWebMvc
 @ComponentScan("web")
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
@@ -83,9 +82,9 @@ public class WebConfig implements WebMvcConfigurer {
         return em;
     }
     @Bean
-    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager  .setEntityManagerFactory(entityManagerFactory.getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
 }

@@ -14,7 +14,9 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public void Add(User user) {
